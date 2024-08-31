@@ -3,25 +3,8 @@ const { GraphQLError } = require('graphql')
 const { signToken } = require('../utils/auth')
 
 const resolvers = {
-Query: {
-    //1 user data
-    getQr: async (parent, {userId}) => {
-        try{
-            const allUrls = await Qr.find({ userId});
-            return allUrls
-        } catch(error) {
-            throw new GraphQLError('Error fetching URL', {
-                extensions: {
-                    code: 'INTERNAL_SERVER_ERROR',
-                    error,
-                }
-            })
-        }
-    },
-},
-
-Mutation: {
-    createUser: async (parent, { username, email, password }) => {
+    Mutation: {
+      createUser: async (parent, { username, email, password }) => {
         try {
           const newUser = await User.create({ username, email, password });
           const token = signToken(newUser);
@@ -47,25 +30,16 @@ Mutation: {
         const token = signToken(user);
         return { token, user };
       },
-      createQr: async (parent, { userId, url, qr }) => {
+      createQr: async (parent, {userId, url, qr }) => {
         try {
-          const newUser = await User.create({ userId, url, qr });
-          return { userId, url, qr };
+          const newQr = await Qr.create({ userId: userId.toString(), url, qr });
+          return newQr;
         } catch (error) {
           console.error("Error creating qr model:", error);
           throw new Error("Failed to create qr model");
         }
       },
-
-
-
-}
-
-
-
-
-
-
-}
+    },
+  };
 
 module.exports = resolvers;
