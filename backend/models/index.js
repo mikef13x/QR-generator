@@ -1,4 +1,4 @@
-import Qr from "./QR";
-import User from "./user";
+const Qr = require( "./QR")
+const User = require ( "./user")
 
 module.exports = {Qr, User}
