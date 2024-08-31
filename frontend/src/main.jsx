@@ -7,7 +7,7 @@ import HomePage from './pages/homepage';
 import SignInPage from './pages/signinpage';
 import SignUpPage from './pages/signuppage';
 import ErrorPage from './pages/errorpage'
-import HistoryPage from './pages/historypage';
+
 import App from './app';
 
 
@@ -29,10 +29,7 @@ const router = createBrowserRouter([
         path: '/signin',
         element: <SignInPage />
       },
-      {
-        path: '/history',
-        element: <HistoryPage />
-      },
+    
   
     ]
   }
