@@ -1,9 +1,10 @@
 
+import RegisterForm from "../components/signup/signup"
 
-
-export default function SignUpPage() {
+export default function SignUpForm() {
     return(
         <>
+        <RegisterForm/>
         </>
     )
 }
