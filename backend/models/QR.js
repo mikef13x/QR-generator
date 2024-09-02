@@ -1,12 +1,12 @@
 const {Schema, model} = require('mongoose');
 
 const QrSchema = new Schema({
-        userId: [
+        userId: 
         {
             type: Schema.Types.ObjectId,
             ref: 'User'
         }
-    ],
+    ,
         url: {
             type: String,
             required: true,
