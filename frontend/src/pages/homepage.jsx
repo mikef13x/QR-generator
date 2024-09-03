@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import QR from '../components/home/QR';
-import { Button, TextField, Paper } from '@mui/material';
-import Title from '../components/home/title';
+import { Button, TextField } from '@mui/material';
+import Title from '../components/home/title'
+import Footer from '../components/other/footer';
+
 
 export default function HomePage() {
   const [inputValue, setInputValue] = useState('');
@@ -38,7 +40,7 @@ export default function HomePage() {
       
     
     }}>
-      <Paper style={{ padding: 16, display: 'flex', justifyContent: 'space-between', width: '70vw' }}>
+      <div style={{ padding: 16, display: 'flex', justifyContent: 'space-between', width: '70vw'}}>
         <div style={{ flex: 1, marginRight: 16 }}>
           <TextField
             label="Enter URL here..."
@@ -62,8 +64,9 @@ export default function HomePage() {
         <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <QR value={qrValue} />
         </div>
-      </Paper>
+      </div>
     </div>
+    <Footer/>
     </>
   );
 }

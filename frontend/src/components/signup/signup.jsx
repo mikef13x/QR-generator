@@ -3,6 +3,7 @@ import { Paper, TextField, Button, Typography, InputAdornment, IconButton } from
 import { Grid } from "@mui/material"
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
+import Footer from '../other/footer';
 // import { CREATE_USER } from '../../utils/mutations';
 // import { useMutation } from '@apollo/client';
 // import Auth from '../../utils/auth';
@@ -66,9 +67,10 @@ const RegisterForm = () => {
 
 
     return (
-        <Grid container justifyContent="center" style={{ minHeight: '100vh' }} mt={12}>
-            <Grid item xs={10} sm={6} md={4}>
-                <Paper elevation={3} style={{ padding: '20px' }}>
+        <>
+<Grid container justifyContent="center" alignItems="center" style={{ minHeight: '80vh', display: 'flex' }}>
+<Grid item xs={10} sm={6} md={4}>
+                <Paper elevation={3} style={{ padding: '20px', marginBottom: '200px' }}>
                     <Typography variant="h5" align="center" gutterBottom>
                         Register
                     </Typography>
@@ -181,6 +183,8 @@ const RegisterForm = () => {
                 </Paper>
             </Grid>
         </Grid>
+        <Footer/>
+        </>
     );
 };
 
