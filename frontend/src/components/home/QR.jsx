@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export default function QR({ value }) {
   return (
-    <Paper style={{ padding: 16 }}>
+    <Paper style={{ padding: 16, marginBottom: '250px'}}>
       <div style={{ 
         height: "auto", 
         margin: "0 auto",  
