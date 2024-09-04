@@ -40,7 +40,7 @@ export default function HomePage() {
       
     
     }}>
-      <div style={{ padding: 16, display: 'flex', justifyContent: 'space-between', width: '70vw'}}>
+      <div style={{ padding: 16, display: 'flex', justifyContent: 'space-between', width: '70vw', marginBottom: '100px'}}>
         <div style={{ flex: 1, marginRight: 16 }}>
           <TextField
             label="Enter URL here..."

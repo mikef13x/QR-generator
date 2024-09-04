@@ -70,7 +70,7 @@ const RegisterForm = () => {
         <>
 <Grid container justifyContent="center" alignItems="center" style={{ minHeight: '80vh', display: 'flex' }}>
 <Grid item xs={10} sm={6} md={4}>
-                <Paper elevation={3} style={{ padding: '20px', marginBottom: '200px' }}>
+                <Paper elevation={3} style={{ padding: '20px', marginBottom: '50px' }}>
                     <Typography variant="h5" align="center" gutterBottom>
                         Register
                     </Typography>

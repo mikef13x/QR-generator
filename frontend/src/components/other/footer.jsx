@@ -1,9 +1,11 @@
-import { Box } from '@mui/material'
+import { Box } from '@mui/material';
+
 
 export default function Footer() {
-    return (
-        <footer>
 
+
+    return (
+        <footer style={{width:'100%', position: 'fixed', bottom: 0}}>
             <Box sx={{
                 textAlign: 'center',
                 justifyContent: 'center',
@@ -12,12 +14,10 @@ export default function Footer() {
                 color: 'white',
                 display: 'flex',
                 height: '7vh',
-                bottom: '0px'
+                
             }}>
-                 © 2024. Created by Michael Freeman.
-
+                © 2024. Created by Michael Freeman.
             </Box>
-
         </footer>
-    )
+    );
 }
