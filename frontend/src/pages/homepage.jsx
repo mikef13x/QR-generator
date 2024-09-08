@@ -3,13 +3,22 @@ import QR from '../components/home/QR';
 import { Button, TextField } from '@mui/material';
 import Title from '../components/home/title'
 import Footer from '../components/other/footer';
+import HistoryModal from '../components/history/history';
 
 
 export default function HomePage() {
   const [inputValue, setInputValue] = useState('');
   const [qrValue, setQrValue] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  const handlePaste = () => {
+    navigator.clipboard.readText().then(text => {
+      setInputValue(text);
+    }).catch(err => {
+      console.error('Failed to read clipboard contents: ', err);
+    });
+  };
   const handleGenerate = () => {
     setQrValue(inputValue);
     setIsGenerated(true)
@@ -29,6 +38,11 @@ export default function HomePage() {
     setQrValue('');
     setIsGenerated(false); 
   };
+ 
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
 
   return (
    <>
@@ -54,11 +68,17 @@ export default function HomePage() {
           <Button variant="contained" color="primary" onClick={handleGenerate} style={{ marginRight: 8 }}>
             Generate
           </Button>
+          <Button variant="contained" color="secondary" onClick={handlePaste} style={{ marginRight: 8 }}>
+            Paste
+          </Button>
           <Button variant="contained" color="secondary" onClick={handleCopy} style={{ marginRight: 8 }} disabled={!isGenerated}>
             Copy Link
           </Button>
-          <Button variant="contained" color="black" onClick={handleReset} disabled={!isGenerated}>
+          <Button variant="contained" color="black" onClick={handleReset} style={{ marginRight: 8 }} disabled={!isGenerated}>
             Reset
+          </Button>
+          <Button variant="contained" color="black" onClick={handleOpen} >
+            My History
           </Button>
         </div>
         <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -67,6 +87,7 @@ export default function HomePage() {
       </div>
     </div>
     <Footer/>
+    <HistoryModal open = {open} handleClose={handleClose}/>
     </>
   );
 }
