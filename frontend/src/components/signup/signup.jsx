@@ -4,16 +4,16 @@ import { Grid } from "@mui/material"
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import Footer from '../other/footer';
-// import { CREATE_USER } from '../../utils/mutations';
-// import { useMutation } from '@apollo/client';
-// import Auth from '../../utils/auth';
+import { CREATE_USER } from '../../utils/mutations'
+import { useMutation } from '@apollo/client';
+import Auth from '../../utils/auth';
 
 const RegisterForm = () => {
     
    
-    // useEffect(() => {
-    //     Auth.ensureGuestAccess();
-    // },);
+    useEffect(() => {
+        Auth.ensureGuestAccess();
+    },);
 
     const [username, setUsername] = useState('');
     const [isUsernameValid, setIsUsernameValid] = useState(true)
@@ -26,20 +26,20 @@ const RegisterForm = () => {
     const [showPassword, setShowPassword] = useState(false)
     const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/
-    // const [createUser] = useMutation(CREATE_USER)
+    const [createUser] = useMutation(CREATE_USER)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         // Handle login logic here\
        
-    //    const {data} = await createUser({
-    //         variables: {
-    //             username,
-    //             email,
-    //             password
-    //         }
-    //     })
-    //     Auth.login(data.createUser.token)
+       const {data} = await createUser({
+            variables: {
+                username,
+                email,
+                password
+            }
+        })
+        Auth.login(data.createUser.token)
         console.log(email, password);
     };
     const handleUsernameChange = (e) => {
