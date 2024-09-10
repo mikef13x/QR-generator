@@ -3,6 +3,11 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    background: fixed;
+    background-image: url('../src/assets/qrbg.jpg');
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
 }
 
 #root {

@@ -29,34 +29,7 @@ const startApolloServer = async () => {
     context: authMiddleware,
   }));
 
-  // GeminiAPI route
-  app.get('/api/gemini', async (req, res) => {
-    try {
-      const response = await axios.get('https://api.gemini.com/v1/symbols');
-      res.json(response.data);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Server error');
-    }
-  });
 
-  app.post('/api/proxy', async (req, res) => {
-    try {
-      console.log('Proxy request body:', req.body); 
-      const response = await axios.post('https://api.openai.com/v1/completions', req.body, {
-        headers: {
-          'Authorization': `Bearer ${process.env.VITE_GEMINI_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-      });
-      console.log('Response from OpenAI:', response.data); 
-      res.json(response.data);
-    } catch (error) {
-      console.error('Error in proxy:', error);
-      res.status(500).json({ error: 'Something went wrong' });
-    }
-  });
-  
 
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));

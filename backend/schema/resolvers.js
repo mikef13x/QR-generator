@@ -1,8 +1,34 @@
 const { User, Qr} = require("../models")
 const { GraphQLError } = require('graphql')
 const { signToken } = require('../utils/auth')
+const {ObjectId} = require('mongoose').Types
 
 const resolvers = {
+    Query: {
+        getHistory: async (parent, {userId}) => {
+          try {
+            const objectId = new ObjectId(userId)
+            const history = await Qr.find({userId: objectId})
+            return history
+          } catch (error) {
+            console.error('error getting history', error);
+            throw new Error('Failed to get history')
+          }
+        },
+        getUsers: async () => {
+          try {
+            const allUsers = await User.find()
+            return allUsers
+          } catch (error) {
+            console.error('error getting users', error);
+            throw new Error('Failed to get users')
+          }
+        }
+
+
+
+
+    },
     Mutation: {
       createUser: async (parent, { username, email, password }) => {
         try {

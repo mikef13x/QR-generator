@@ -11,12 +11,11 @@ import { Link } from 'react-router-dom';
 export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" >
+      <AppBar position="fixed" sx={{ backgroundColor: 'grey' }}>
         <Toolbar>
-        <Typography variant="h6" component="div">
+          <Typography variant="h6" component="div">
             QR Generator
           </Typography>
-         
           <Box sx={{ display: 'flex', flexGrow: 1 }}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
               <Button color='inherit'>Home</Button>
@@ -25,7 +24,6 @@ export default function Navbar() {
               <Button color="inherit">Login</Button>
             </Link>
           </Box>
-          
         </Toolbar>
       </AppBar>
     </Box>

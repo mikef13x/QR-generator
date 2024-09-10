@@ -20,8 +20,6 @@ const QrSchema = new Schema({
 
 
 
-
-
 })
 
 const Qr = model('Qr', QrSchema)
