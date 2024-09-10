@@ -1,14 +1,14 @@
 const { User, Qr} = require("../models")
 const { GraphQLError } = require('graphql')
 const { signToken } = require('../utils/auth')
-const {ObjectId} = require('mongoose').Types
+
 
 const resolvers = {
     Query: {
         getHistory: async (parent, {userId}) => {
           try {
-            const objectId = new ObjectId(userId)
-            const history = await Qr.find({userId: objectId})
+          
+            const history = await Qr.find({userId})
             return history
           } catch (error) {
             console.error('error getting history', error);
