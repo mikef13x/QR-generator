@@ -30,17 +30,23 @@ const RegisterForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // Handle login logic here\
-       
-       const {data} = await createUser({
-            variables: {
-                username,
-                email,
-                password
+        try {
+            const { data } = await createUser({
+                variables: {
+                    username,
+                    email,
+                    password
+                }
+            });
+            console.log(data)
+            if (data && data.CreateUser && data.CreateUser.token) {
+                Auth.login(data.CreateUser.token);
+            } else {
+                console.error('Error: No token returned from createUser mutation');
             }
-        })
-        Auth.login(data.createUser.token)
-        console.log(email, password);
+        } catch (error) {
+            console.error('Error creating user:', error);
+        }
     };
     const handleUsernameChange = (e) => {
         const usernameInput = e.target.value;
