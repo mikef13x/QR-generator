@@ -56,7 +56,7 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
       },
-      createQr: async (parent, {userId, url, qr }) => {
+      CreateQr: async (parent, {userId, url, qr }) => {
         try {
           const newQr = await Qr.create({ userId: userId.toString(), url, qr });
           return newQr;
