@@ -1,13 +1,13 @@
-const express = require("express");
-const { ApolloServer } = require("@apollo/server");
-const { expressMiddleware } = require("@apollo/server/express4");
-const path = require("path");
-const { authMiddleware } = require("./utils/auth");
+const express = require('express');
+const { ApolloServer } = require('@apollo/server');
+const { expressMiddleware } = require('@apollo/server/express4');
+const path = require('path');
+const { authMiddleware } = require('./utils/auth');
 require('dotenv').config();
 const cors = require('cors');
 const axios = require('axios');
-const { typeDefs, resolvers } = require("./schema");
-const db = require("./config/connection");
+const { typeDefs, resolvers } = require('./schema');
+const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -19,17 +19,20 @@ const server = new ApolloServer({
 const startApolloServer = async () => {
   await server.start();
 
-  app.use(cors({
-    origin: ['http://localhost:3000', 'https://your-render-url.com'],
-  }));
+  app.use(
+    cors({
+      origin: ['http://localhost:5173'],
+    })
+  );
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-  app.use('/graphql', expressMiddleware(server, {
-    context: authMiddleware,
-  }));
-
-
+  app.use(
+    '/graphql',
+    expressMiddleware(server, {
+      context: authMiddleware,
+    })
+  );
 
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
