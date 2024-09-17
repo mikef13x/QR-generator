@@ -3,32 +3,32 @@ import { Paper, Grid, TextField, Button, Typography, InputAdornment, IconButton 
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import Footer from '../other/footer';
-// import { useMutation } from '@apollo/client';
-// import Auth from '../../utils/auth';
-// import { LOGIN_USER } from '../../utils/mutations';
+import { useMutation } from '@apollo/client';
+import Auth from '../../utils/auth';
+import { LOGIN_USER } from '../../utils/mutations';
 
 const LoginForm = () => {
     
 
-    // useEffect(() => {
-    //     Auth.ensureGuestAccess();
-    // },);
+    useEffect(() => {
+        Auth.ensureGuestAccess();
+    },);
 
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false)
     const [username, setUsername] = useState('');
-    // const [login] = useMutation(LOGIN_USER);
+    const [login] = useMutation(LOGIN_USER);
     const handleSubmit = async (event) => {
         event.preventDefault();
      
         // Handle login logic here
-        // const {data} = await login({
-        //     variables: {
-        //         username,
-        //         password
-        //     }
-        // })
-        // Auth.login(data.login.token)
+        const {data} = await login({
+            variables: {
+                username,
+                password
+            }
+        })
+        Auth.login(data.login.token)
         console.log(username, password);
     };
    

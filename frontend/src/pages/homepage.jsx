@@ -1,16 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import QR from '../components/home/QR';
 import { Button, TextField } from '@mui/material';
 import Title from '../components/home/title'
 import Footer from '../components/other/footer';
 import HistoryModal from '../components/history/history';
+import {useMutation, useQuery} from '@apollo/client'
+import {CREATE_QR} from '../utils/mutations'
+import Auth from '../utils/auth'
+import { QUERY_HISTORY } from '../utils/queries';
 
 
 export default function HomePage() {
+
+  const [createQr] = useMutation(CREATE_QR)
+  const userId = Auth.getProfile().data.id
+
+
   const [inputValue, setInputValue] = useState('');
   const [qrValue, setQrValue] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
+  const [isGenerateDisabled, setIsGenerateDisabled] = useState(false); // State variable to track disabled state
   const [open, setOpen] = useState(false);
+
 
   const handlePaste = () => {
     navigator.clipboard.readText().then(text => {
@@ -19,9 +30,20 @@ export default function HomePage() {
       console.error('Failed to read clipboard contents: ', err);
     });
   };
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     setQrValue(inputValue);
     setIsGenerated(true)
+    setIsGenerateDisabled(true);
+    console.log(  Auth.getProfile().data.id)
+    const {data} = await createQr({
+      variables: {
+        userId: userId, url: inputValue, qr: inputValue
+      },
+      refetchQueries: [{query: QUERY_HISTORY, variables:{
+          userId: userId
+      }}]
+    })
+    
   };
 
   const handleCopy = () => {
@@ -37,8 +59,11 @@ export default function HomePage() {
     setInputValue('');
     setQrValue('');
     setIsGenerated(false); 
+    setIsGenerateDisabled(false)
   };
  
+  
+
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -70,7 +95,7 @@ export default function HomePage() {
               }
             }}
           />
-          <Button variant="contained" color="primary" onClick={handleGenerate} style={{ marginRight: 8 }}>
+          <Button variant="contained" color="primary" onClick={handleGenerate} disabled={isGenerateDisabled || inputValue === ""}style={{ marginRight: 8 }}>
             Generate
           </Button>
           <Button variant="contained" color="secondary" onClick={handlePaste} style={{ marginRight: 8 }}>
