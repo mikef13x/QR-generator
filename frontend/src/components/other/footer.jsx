@@ -10,7 +10,7 @@ export default function Footer() {
                 textAlign: 'center',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: 'grey',
+              
                 color: 'white',
                 display: 'flex',
                 height: '7vh',
