@@ -21,7 +21,7 @@ module.exports = {
     try {
       const { data } = jwt.verify(token, secret);
       req.user = data;
-      const user = await User.findByPk(data.id);
+      const user = await User.findById(data.id);
       if (user) {
         req.user = user;
       }

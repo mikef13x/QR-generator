@@ -1,21 +1,48 @@
 import React, { useState } from 'react';
 import { Modal, Box, Typography, Button, List, ListItem, ListItemText } from '@mui/material';
+import {useQuery} from '@apollo/client'
+import {QUERY_HISTORY} from '../../utils/queries'
+import Auth from '../../utils/auth';
+import { useEffect } from 'react';
 
-const pastSearches = [
-  'https://www.youtube.com/mrbeast',
-  'https://www.youtube.com',
-  'https://www.twitch.tv/',
-  // Add more past searches here
-];
+
+
+
+ 
+
 
 export default function HistoryModal({ open, handleClose }) {
-    
+
+  const userId = Auth.getProfile().data.id;
+
+  const { loading, error, data } = useQuery(QUERY_HISTORY, {
+
+    variables: { userId },
+
+
+  });
+
+
+  const [pastSearches, setPastSearches] = useState([]);
+
+  useEffect(() => {
+    if (data) {
+      setPastSearches(data.getHistory.map((item) => item.url));
+    }
+  }, [data]);
+
+
+  // Removed unnecessary useEffect
+
   const handleCopySearch = (searchValue) => {
     navigator.clipboard.writeText(searchValue).then(() => {
     }).catch(err => {
       console.error('Failed to copy:', err);
     });
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>
@@ -35,25 +62,36 @@ export default function HistoryModal({ open, handleClose }) {
           border: '2px solid #000',
           boxShadow: 24,
           p: 4,
+         
         }}>
-          <Typography id="modal-title" variant="h6" component="h2">
+          <Typography sx={{textAlign: 'center'}}id="modal-title" variant="h6" component="h2">
             Past Generated Searches
           </Typography>
+          <Box sx={{
+             overflowY: 'auto',
+          maxHeight: '50vh',
+          margin: '25px'
+          }}>
           <List>
             {pastSearches.map((search, index) => (
               <div key={index}>
                 <ListItem>
                   <ListItemText primary={search} />
                 </ListItem>
+                <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
                 <Button variant="contained" color="primary" onClick={() => handleCopySearch(search)}>
                   Copy Link
                 </Button>
+                </Box>
               </div>
             ))}
           </List>
-          <Button variant="contained" color="secondary" onClick={handleClose}>
-            Close
-          </Button>
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
+      <Button variant="contained" color="secondary" onClick={handleClose}>
+        Close
+      </Button>
+    </Box>
         </Box>
       </Modal>
     </div>

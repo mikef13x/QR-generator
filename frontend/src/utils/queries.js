@@ -11,7 +11,7 @@ query GetUsers {
 }
 `
 export const QUERY_HISTORY = gql`
-uery Query($userId: ID!) {
+query Query($userId: ID!) {
   getHistory(userId: $userId) {
     id
     qr
