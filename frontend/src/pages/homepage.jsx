@@ -13,7 +13,8 @@ import { QUERY_HISTORY } from '../utils/queries';
 export default function HomePage() {
 
   const [createQr] = useMutation(CREATE_QR)
-  const userId = Auth.getProfile().data.id
+  const profile = Auth.getProfile()
+  const userId = profile ? profile.data.id : null
 
 
   const [inputValue, setInputValue] = useState('');
