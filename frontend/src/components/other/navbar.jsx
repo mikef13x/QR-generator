@@ -4,11 +4,17 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import AuthService from '../../utils/auth'
+
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
+  const handleLogout = () => {
+    localStorage.removeItem('id_token')
+    window.location.reload()
+  }
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" sx={{ backgroundColor: 'grey' }}>
@@ -20,9 +26,14 @@ export default function Navbar() {
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
               <Button color='inherit'>Home</Button>
             </Link>
-            <Link to="/signin" style={{ textDecoration: 'none', color: 'inherit' }}>
+            {AuthService.loggedIn() ? (
+               <Button color='inherit'onClick={handleLogout}>Logout</Button>
+            ) : (<Link to="/signin" style={{ textDecoration: 'none', color: 'inherit' }}>
               <Button color="inherit">Login</Button>
             </Link>
+          )}
+            
+           
           </Box>
         </Toolbar>
       </AppBar>
