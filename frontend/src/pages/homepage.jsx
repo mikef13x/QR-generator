@@ -13,7 +13,8 @@ import { QUERY_HISTORY } from '../utils/queries';
 export default function HomePage() {
 
   const [createQr] = useMutation(CREATE_QR)
-  const userId = Auth.getProfile().data.id
+  const profile = Auth.getProfile()
+  const userId = profile ? profile.data.id : null
 
 
   const [inputValue, setInputValue] = useState('');
@@ -98,7 +99,7 @@ export default function HomePage() {
           <Button variant="contained" color="primary" onClick={handleGenerate} disabled={isGenerateDisabled || inputValue === ""}style={{ marginRight: 8 }}>
             Generate
           </Button>
-          <Button variant="contained" color="secondary" onClick={handlePaste} style={{ marginRight: 8 }}>
+          <Button variant="contained" color="secondary" onClick={handlePaste} disabled={isGenerateDisabled} style={{ marginRight: 8 }}>
             Paste
           </Button>
           <Button variant="contained" color="warning" onClick={handleCopy} style={{ marginRight: 8 }} disabled={!isGenerated}>
