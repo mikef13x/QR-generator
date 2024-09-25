@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Coda:wght@400&display=swap');
+
+
 html, body {
     height: 100%;
     margin: 0;
@@ -19,3 +22,8 @@ html, body {
 main {
     flex: 1;
 }
+.coda-regular {
+    font-family: "Coda", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }

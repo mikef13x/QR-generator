@@ -9,7 +9,7 @@ export default function QR({ value }) {
 
   const downloadPng = () => {
     if (qrRef.current) {
-      toPng(qrRef.current, {quality: 1, width: 256, height:256})
+      toPng(qrRef.current)
         .then((dataUrl) => {
           const link = document.createElement('a');
           link.href = dataUrl;
@@ -24,7 +24,7 @@ export default function QR({ value }) {
 
   const downloadSvg = () => {
     if (qrRef.current) {
-      toSvg(qrRef.current,  {quality: 1, width: 256, height:256})
+      toSvg(qrRef.current)
         .then((dataUrl) => {
           const link = document.createElement('a');
           link.href = dataUrl;
@@ -40,7 +40,7 @@ export default function QR({ value }) {
   return (
     <Paper style={{ padding: 16, marginBottom: '250px' }}>
       <div
-        ref={qrRef}
+        
         style={{
           height: 'auto',
           margin: '0 auto',
@@ -50,7 +50,7 @@ export default function QR({ value }) {
         }}
       >
         {value ? (
-          <QRCode size={200} value={value} viewBox={`0 0 256 256`} />
+          <QRCode size={200} ref={qrRef} value={value} viewBox={`0 0 256 256`} />
         ) : (
           <div
             style={{
