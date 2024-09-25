@@ -16,6 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^8.2.2",
+    "dom-to-image": "^2.6.0",
+    "html-to-image": "^1.11.11",
     "nodemon": "^3.1.4"
   }
 }
