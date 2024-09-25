@@ -66,16 +66,16 @@ export default function QR({ value }) {
           </div>
         )}
       </div>
-      {value && (
+     
         <div style={{ marginTop: 16 }}>
-          <Button variant="contained" color="primary" onClick={downloadPng}>
+          <Button variant="contained" color="primary" onClick={downloadPng} disabled={!value}>
             Download PNG
           </Button>
-          <Button variant="contained" color="secondary" onClick={downloadSvg} style={{ marginLeft: 8 }}>
+          <Button variant="contained" color="secondary" onClick={downloadSvg} disabled={!value} style={{ marginLeft: 8 }}>
             Download SVG
           </Button>
         </div>
-      )}
+     
     </Paper>
   );
 }

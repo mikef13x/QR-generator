@@ -4,7 +4,7 @@ import '../../app.css';
 export default function Title() {
     return (
         <Box sx={{ textAlign: 'center', marginBottom: '50px', marginTop: '100px', color: 'white' }}>
-            <Paper elevation={3} sx={{borderRadius:'50px', padding: '20px', backgroundColor: 'rgba(0, 0, 0, 0.1)', display: 'inline-block' }}>
+            <Paper elevation={3} sx={{ padding: '20px', backgroundColor: 'rgba(128, 128, 128, 0.0)', display: 'inline-block' }}>
                 <Typography sx={{ color: 'white' }} fontSize={72}>
                     <span className="coda-regular">QR Code Generator</span>
                 </Typography>

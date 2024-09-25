@@ -18,7 +18,7 @@ export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" sx={{
-          backgroundImage: 'linear-gradient(to right, black, grey, black)',
+          backgroundImage: 'linear-gradient(to right, black, rgb(50,50,50), black)',
         }}>
         <Toolbar>
           <Typography sx={{marginRight: '70px'}} variant="h6" component="div">
@@ -27,15 +27,18 @@ export default function Navbar() {
           <Box sx={{ display: 'flex', flexGrow: 1 }}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
               <Button color='inherit'> 
-                <Typography sx={{marginRight: '30px'}}>
+                <Typography sx={{marginLeft: '15px', marginRight: '15px'}}>
                  <span className='coda-regular'>Home</span>
                </Typography>
                  </Button>
             </Link>
             {AuthService.loggedIn() ? (
-               <Button color='inherit'onClick={handleLogout}> <span className='coda-regular'>Logout</span></Button>
+               <Button color='inherit'onClick={handleLogout}> 
+                 <Typography sx={{marginLeft: '15px', marginRight: '15px'}}>
+               <span className='coda-regular'>Logout</span>
+               </Typography></Button>
             ) : (<Link to="/signin" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <Button color="inherit"> <span className='coda-regular'>Login</span></Button>
+              <Button color="inherit">  <Typography sx={{marginLeft: '15px', marginRight: '15px'}}> <span className='coda-regular'>Login</span></Typography></Button>
             </Link>
           )}
             
