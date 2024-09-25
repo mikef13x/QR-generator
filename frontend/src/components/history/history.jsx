@@ -100,7 +100,7 @@ export default function HistoryModal({ open, handleClose }) {
                   </List>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
-                <Button variant="contained" color="error" onClick={handleClose}>
+                <Button variant="contained" color="secondary" onClick={handleClose}>
                   Close
                 </Button>
                 </Box>

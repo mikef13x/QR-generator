@@ -80,7 +80,7 @@ export default function HomePage() {
       
     
     }}>
-      <div style={{ padding: 16, display: 'flex', justifyContent: 'space-between', width: '70vw', marginBottom: '100px'}}>
+      <div style={{ padding: 16, display: 'flex', justifyContent: 'space-between', width: '70vw'}}>
         <div style={{ flex: 1, marginRight: 16}}>
           <TextField
             label="Enter URL here..."
@@ -102,10 +102,10 @@ export default function HomePage() {
           <Button variant="contained" color="secondary" onClick={handlePaste} disabled={isGenerateDisabled} style={{ marginRight: 8 }}>
             Paste
           </Button>
-          <Button variant="contained" color="warning" onClick={handleCopy} style={{ marginRight: 8 }} disabled={!isGenerated}>
+          <Button variant="contained" color="primary" onClick={handleCopy} style={{ marginRight: 8 }} disabled={!isGenerated}>
             Copy Link
           </Button>
-          <Button variant="contained" color="error" onClick={handleReset} style={{ marginRight: 8 }} disabled={!isGenerated}>
+          <Button variant="contained" color="secondary" onClick={handleReset} style={{ marginRight: 8 }} disabled={!isGenerated}>
             Reset
           </Button>
           <Button variant="contained" color="inherit" onClick={handleOpen} >
