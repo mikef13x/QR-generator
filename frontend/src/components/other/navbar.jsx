@@ -17,19 +17,25 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ backgroundColor: 'grey' }}>
+      <AppBar position="fixed" sx={{
+          backgroundImage: 'linear-gradient(to right, black, grey, black)',
+        }}>
         <Toolbar>
-          <Typography variant="h6" component="div">
-            QR Generator
+          <Typography sx={{marginRight: '70px'}} variant="h6" component="div">
+          <span className='coda-regular'>QR GEN</span>
           </Typography>
           <Box sx={{ display: 'flex', flexGrow: 1 }}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <Button color='inherit'>Home</Button>
+              <Button color='inherit'> 
+                <Typography sx={{marginRight: '30px'}}>
+                 <span className='coda-regular'>Home</span>
+               </Typography>
+                 </Button>
             </Link>
             {AuthService.loggedIn() ? (
-               <Button color='inherit'onClick={handleLogout}>Logout</Button>
+               <Button color='inherit'onClick={handleLogout}> <span className='coda-regular'>Logout</span></Button>
             ) : (<Link to="/signin" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <Button color="inherit">Login</Button>
+              <Button color="inherit"> <span className='coda-regular'>Login</span></Button>
             </Link>
           )}
             
