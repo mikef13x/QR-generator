@@ -28,6 +28,7 @@ type Auth {
 type Query {
     getHistory(userId: ID!): [Qr]
     getUsers: [User]
+    getUser(userId: ID!): User
 
 }
 
