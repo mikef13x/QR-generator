@@ -19,4 +19,14 @@ query Query($userId: ID!) {
     userId
   }
 }
+  `
+export const QUERY_USER = gql`
+query GetUser($userId: ID!) {
+  getUser(userId: $userId) {
+    email
+    id
+    password
+    username
+  }
+}
 `

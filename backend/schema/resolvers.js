@@ -23,6 +23,15 @@ const resolvers = {
             console.error('error getting users', error);
             throw new Error('Failed to get users')
           }
+        },
+        getUser: async (parent, {userId}) => {
+          try {
+            const OneUser = await User.findById(userId)
+            return OneUser
+          } catch (error) {
+            console.error('error getting user', error);
+            throw new Error('Failed to get user')
+          }
         }
 
 
