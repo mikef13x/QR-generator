@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import { ApolloProvider } from '@apollo/client';
-// import client from './utils/client';
+import { ApolloProvider } from '@apollo/client';
+import client from './utils/client';
 import HomePage from './pages/homepage';
 import SignInPage from './pages/signinpage';
 import SignUpForm from './pages/signuppage';
@@ -37,8 +37,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <ApolloProvider client={client}> */}
+    <ApolloProvider client={client}>
       <RouterProvider router={router} />
-    {/* </ApolloProvider> */}
+    </ApolloProvider>
   </React.StrictMode>,
 );
