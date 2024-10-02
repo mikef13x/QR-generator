@@ -8,19 +8,19 @@ import { useEffect, useState } from "react";
 export default function Title() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [userId, setUserId] = useState(null);
-    
+
 
     useEffect(() => {
         if (Auth.loggedIn()) {
             const profile = Auth.getProfile();
             setUserId(profile.data.id);
-          setIsAuthenticated(true);
+            setIsAuthenticated(true);
         } else {
-          setIsAuthenticated(false);
+            setIsAuthenticated(false);
         }
-      }, []);
+    }, []);
 
-    const {  data } = useQuery(QUERY_USER, {
+    const { data } = useQuery(QUERY_USER, {
         variables: { userId },
         skip: !isAuthenticated,
     });
@@ -33,41 +33,41 @@ export default function Title() {
                     <>
                         <Typography sx={{ color: 'white' }} fontSize={50}>
 
-                        <span className="coda-regular">Welcome {user?.username},</span>
-                    </Typography>
-                     <Typography sx={{ color: 'white' }} fontSize={72}>
+                            <span className="coda-regular">Welcome {user?.username},</span>
+                        </Typography>
+                        <Typography sx={{ color: 'white' }} fontSize={72}>
 
-                     <span className="coda-regular">QR Code Generator</span>
-                 </Typography>
-                 <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
-                     <span className="coda-regular">Enter a link and click &apos;Generate&apos; to create a QR Code</span>
-                 </Typography>
-                 <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
-                     <span className="coda-regular">Use &apos;Copy Link&apos; to add the link to your clipboard</span>
-                 </Typography>
-                 <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
-                     <span className="coda-regular">Press &apos;Reset&apos; to clear the input field and start over</span>
-                 </Typography>
-                 </>
+                            <span className="coda-regular">QR Code Generator</span>
+                        </Typography>
+                        <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
+                            <span className="coda-regular">Enter a link and click &apos;Generate&apos; to create a QR Code</span>
+                        </Typography>
+                        <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
+                            <span className="coda-regular">Use &apos;Copy Link&apos; to add the link to your clipboard</span>
+                        </Typography>
+                        <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
+                            <span className="coda-regular">Press &apos;Reset&apos; to clear the input field and start over</span>
+                        </Typography>
+                    </>
                 ) : (<>
-                   
-                   <Typography sx={{ color: 'white' }} fontSize={50}>
 
-<span className="coda-regular">Welcome to</span>
-</Typography>
-                <Typography sx={{ color: 'white' }} fontSize={72}>
+                    <Typography sx={{ color: 'white' }} fontSize={50}>
 
-                    <span className="coda-regular">QR Code Generator</span>
-                </Typography>
-                <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
-                    <span className="coda-regular">Enter a link and click &apos;Generate&apos; to create a QR Code</span>
-                </Typography>
-                <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
-                    <span className="coda-regular">Use &apos;Copy Link&apos; to add the link to your clipboard</span>
-                </Typography>
-                <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
-                    <span className="coda-regular">Press &apos;Reset&apos; to clear the input field and start over</span>
-                </Typography>
+                        <span className="coda-regular">Welcome to</span>
+                    </Typography>
+                    <Typography sx={{ color: 'white' }} fontSize={72}>
+
+                        <span className="coda-regular">QR Code Generator</span>
+                    </Typography>
+                    <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
+                        <span className="coda-regular">Enter a link and click &apos;Generate&apos; to create a QR Code</span>
+                    </Typography>
+                    <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
+                        <span className="coda-regular">Use &apos;Copy Link&apos; to add the link to your clipboard</span>
+                    </Typography>
+                    <Typography sx={{ color: 'white' }} fontSize={24} variant="h6">
+                        <span className="coda-regular">Press &apos;Reset&apos; to clear the input field and start over</span>
+                    </Typography>
                 </>
                 )}
             </Paper>
